@@ -1,0 +1,19 @@
+{
+  "name": "Sokoban",
+  "version": "0.1.0",
+  "description": "initial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groovy354/DSI_Sokoban.git"
+  },
+  "author": "Kuba Orlik <groovy354@gmail.com> (https://www.facebook.com/groovy354)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/groovy354/DSI_Sokoban/issues"
+  },
+  "homepage": "https://github.com/groovy354/DSI_Sokoban"
+}
