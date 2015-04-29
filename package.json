@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/groovy354/DSI_Sokoban/issues"
   },
-  "homepage": "https://github.com/groovy354/DSI_Sokoban"
+  "homepage": "https://github.com/groovy354/DSI_Sokoban",
+  "dependencies": {
+    "colors": "^1.1.0"
+  }
 }
