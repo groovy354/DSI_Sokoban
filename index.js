@@ -19,9 +19,14 @@ for(var i=1; i<=amount_of_walls; i++){
 var amount_of_crates = 20;
 for(var i=1; i<=amount_of_crates; i++){
 	var field = plansza.get_random_field();
-	var skrzynka = new BoardObject("crate", String.fromCharCode(9632), "yellow");
-	field.insert(skrzynka);
+	if(!field.is_obstacle()){
+		var skrzynka = new BoardObject("crate", String.fromCharCode(9632), "yellow");
+		field.insert(skrzynka);		
+	}
 }
+
+var goal_field = plansza.get_random_field();
+plansza.set_goal(goal_field.position.x, goal_field.position.y);
 
 
 var agent = new BoardObject("agent", String.fromCharCode(9632), "green", 5, 5);
