@@ -10,16 +10,23 @@ var plansza = new Board(40);
 var display = new ConsoleDisplay(plansza);
 
 
-var amount_of_walls = 900;
+var amount_of_walls = 300;
 for(var i=1; i<=amount_of_walls; i++){
 	var field = plansza.get_random_field();
 	field.set_material(Materials.Stone);
 }
 
+var amount_of_crates = 20;
+for(var i=1; i<=amount_of_crates; i++){
+	var field = plansza.get_random_field();
+	var skrzynka = new BoardObject("crate", String.fromCharCode(9632), "yellow");
+	field.insert(skrzynka);
+}
 
-var agent = new BoardObject("agent", "@", "red", 5, 5);
 
-plansza.addObject(agent);
+var agent = new BoardObject("agent", String.fromCharCode(9632), "green", 5, 5);
+
+plansza.get_random_field().insert(agent);
 
 keypress(process.stdin);
 
@@ -39,9 +46,12 @@ process.stdin.on('keypress', function (ch, key) {
 			agent.move(1, 0);
 			break;
 		}		
+	///*
 	}catch(error){
-		//console.error(error);
+		//console.error(error, error.stack);
+		//throw error;
 	}
+	//*/
 	if (key && key.ctrl && key.name == 'c') {
 		process.stdin.pause();
 	}
