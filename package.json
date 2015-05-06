@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/groovy354/DSI_Sokoban",
   "dependencies": {
-    "colors": "^1.1.0"
+    "colors": "^1.1.0",
+    "keypress": "^0.2.1"
   }
 }
