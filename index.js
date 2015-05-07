@@ -6,17 +6,17 @@ var BoardObject = require("./lib/board_object");
 var ConsoleDisplay = require("./lib/display-console.js");
 var Materials = require("./lib/materials/materials.js");
 
-var plansza = new Board(40);
+var plansza = new Board(20);
 var display = new ConsoleDisplay(plansza);
 
 
-var amount_of_walls = 300;
+var amount_of_walls = 20;
 for(var i=1; i<=amount_of_walls; i++){
 	var field = plansza.get_random_field();
 	field.set_material(Materials.Stone);
 }
 
-var amount_of_crates = 20;
+var amount_of_crates = 5;
 for(var i=1; i<=amount_of_crates; i++){
 	var field = plansza.get_random_field();
 	if(!field.is_obstacle()){
@@ -61,6 +61,8 @@ process.stdin.on('keypress', function (ch, key) {
 		process.stdin.pause();
 	}
 });
+
+//console.log(agent.find_path_to_goal());
 
 process.stdin.setRawMode(true);
 process.stdin.resume();
