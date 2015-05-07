@@ -6,11 +6,11 @@ var BoardObject = require("./lib/board_object");
 var ConsoleDisplay = require("./lib/display-console.js");
 var Materials = require("./lib/materials/materials.js");
 
-var plansza = new Board(20);
+var plansza = new Board(10);
 var display = new ConsoleDisplay(plansza);
 
 
-var amount_of_walls = 20;
+var amount_of_walls = 10;
 for(var i=1; i<=amount_of_walls; i++){
 	var field = plansza.get_random_field();
 	field.set_material(Materials.Stone);
