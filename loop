@@ -1,0 +1,1 @@
+for i in {1..300}; do /usr/bin/time --format "%e" -o "div1.txt" --append  node .; done

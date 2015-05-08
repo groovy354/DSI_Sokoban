@@ -1,0 +1,7 @@
+for i in {1..10}; 
+do 
+	for t in {1..100}
+	do
+		/usr/bin/time --format "%e" -o div$i.txt --append  node . $i;
+	done
+done
