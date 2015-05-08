@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/groovy354/DSI_Sokoban",
   "dependencies": {
+    "MD5": "^1.2.1",
+    "circular-json": "^0.1.6",
     "clone": "^1.0.2",
     "colors": "^1.1.0",
+    "heap": "^0.2.6",
     "keypress": "^0.2.1"
   }
 }

@@ -6,9 +6,7 @@ var BoardObject = require("./lib/board_object");
 var ConsoleDisplay = require("./lib/display-console.js");
 var Materials = require("./lib/materials/materials.js");
 
-var plansza = new Board(10);
-var display = new ConsoleDisplay(plansza);
-
+var plansza = new Board(8);
 
 var amount_of_walls = 10;
 for(var i=1; i<=amount_of_walls; i++){
@@ -16,7 +14,7 @@ for(var i=1; i<=amount_of_walls; i++){
 	field.set_material(Materials.Stone);
 }
 
-var amount_of_crates = 5;
+var amount_of_crates = 1;
 for(var i=1; i<=amount_of_crates; i++){
 	var field = plansza.get_random_field();
 	if(!field.is_obstacle()){
@@ -36,6 +34,7 @@ plansza.get_random_field().insert(agent);
 keypress(process.stdin);
 
 process.stdin.on('keypress', function (ch, key) {
+	console.log(agent);
 	try{
 		switch(key.name){
 			case "up":
@@ -62,7 +61,30 @@ process.stdin.on('keypress', function (ch, key) {
 	}
 });
 
-//console.log(agent.find_path_to_goal());
+var initial_board_state = plansza.get_state();
+
+var preview = new ConsoleDisplay(plansza);
+
+var action_path = agent.find_path_to_goal(plansza.size*plansza.size);
+if(!action_path) console.log("UNSOLVABLE".red)
+
+var plansza = Board.fromState(initial_board_state);
+
+function perform_agent_action(action_path){
+	if(action_path.length>0){
+		var action = action_path.pop();
+		console.log(action);
+		agent.move(action.y, action.x);
+		setTimeout(function(){
+			perform_agent_action(action_path);
+		}, 300);
+	}
+}
+
+
+var display = new ConsoleDisplay(plansza);
+
+perform_agent_action(action_path);
 
 process.stdin.setRawMode(true);
 process.stdin.resume();
