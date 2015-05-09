@@ -9,7 +9,7 @@ var Materials = require("./lib/materials/materials.js");
 var plansza = new Board(20);
 
 console.log("generating walls...");
-var amount_of_walls = 85;
+var amount_of_walls = 0;
 for(var i=1; i<=amount_of_walls; i++){
 	var field = plansza.get_random_field();
 	field.set_material(Materials.Stone);
@@ -24,7 +24,7 @@ for(var i=1; i<=amount_of_crates; i++){
 		var field = plansza.get_random_field();
 		if(!field.is_obstacle()){
 			var skrzynka = new BoardObject("crate", String.fromCharCode(9632), "yellow");
-			field.insert(skrzynka);		
+			plansza.insert_object(field.position, skrzynka);
 			inserted = true;
 		}		
 	}while(!inserted);
@@ -42,8 +42,7 @@ plansza.set_goal(goal_field.position.x, goal_field.position.y);
 
 var agent = new BoardObject("agent", String.fromCharCode(9632), "green", 5, 5);
 
-plansza.get_random_field().insert(agent);
-
+plansza.insert_object(plansza.get_random_field().position, skrzynka);
 /*
 keypress(process.stdin);
 
