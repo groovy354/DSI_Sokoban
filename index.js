@@ -106,4 +106,4 @@ function perform_agent_action(action_path){
 
 var display = new ConsoleDisplay(plansza);
 
-perform_agent_action(action_path);
+//perform_agent_action(action_path);
