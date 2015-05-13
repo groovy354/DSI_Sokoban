@@ -9,7 +9,7 @@ var Materials = require("./lib/materials/materials.js");
 var plansza = new Board(40);
 
 console.log("generating walls...");
-var amount_of_walls = 300;
+var amount_of_walls = 65;
 for(var i=1; i<=amount_of_walls; i++){
 	var field = plansza.get_random_field();
 	field.set_material(Materials.Stone);
@@ -87,8 +87,8 @@ var preview = new ConsoleDisplay(plansza);
 
 
 
-var action_path = plansza.solve(plansza.size*plansza.size);
-if(!action_path) console.log("UNSOLVABLE".red)
+var action_path = plansza.solve(plansza.size*3, Math.pow(plansza.size, 3));
+if(!action_path) console.log("UNSOLVABLE".red); else console.log("SOLVED!".green);
 
 var plansza = Board.fromState(initial_board_state);
 
@@ -99,13 +99,11 @@ function perform_agent_action(action_path){
 		plansza.move_object(agent.id, action);
 		setTimeout(function(){
 			perform_agent_action(action_path);
-		}, 150);
+		}, 100);
 	}
 }
 
 
 var display = new ConsoleDisplay(plansza);
 
-if(process.argv[2]==undefined) perform_agent_action(action_path);
-
-
+//perform_agent_action(action_path);

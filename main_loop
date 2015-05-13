@@ -3,5 +3,7 @@ do
 	for t in {1..100}
 	do
 		/usr/bin/time --format "%e" -o div$i.txt --append  node . $i;
+		sleep 5
 	done
+	sleep 1200
 done
