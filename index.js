@@ -6,7 +6,7 @@ var BoardObject = require("./lib/board_object");
 var ConsoleDisplay = require("./lib/display-console.js");
 var Materials = require("./lib/materials/materials.js");
 
-var plansza = new Board(40);
+var plansza = new Board(20);
 
 console.log("generating walls...");
 var amount_of_walls = 65;
@@ -106,4 +106,4 @@ function perform_agent_action(action_path){
 
 var display = new ConsoleDisplay(plansza);
 
-//perform_agent_action(action_path);
+perform_agent_action(action_path);
