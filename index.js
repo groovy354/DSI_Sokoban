@@ -83,7 +83,7 @@ var preview = new ConsoleDisplay(plansza);
 
 var initial_board_state = plansza.get_state();
 
-var preview = new ConsoleDisplay(plansza);
+//var preview = new ConsoleDisplay(plansza);
 
 
 
