@@ -2,48 +2,10 @@ var keypress = require('keypress');
 
 var Sokoban = {};
 var Board = require("./lib/board.js");
-var BoardObject = require("./lib/board_object");
 var ConsoleDisplay = require("./lib/display-console.js");
-var Materials = require("./lib/materials/materials.js");
 
-var plansza = new Board(20);
-
-console.log("generating walls...");
-var amount_of_walls = 80;
-for(var i=1; i<=amount_of_walls; i++){
-	var field = plansza.get_random_field();
-	field.set_material(Materials.Stone);
-}
-console.log("done!".green);
-
-console.log("placing crate...");
-var amount_of_crates = 1;
-for(var i=1; i<=amount_of_crates; i++){
-	var inserted = false;
-	do{
-		var field = plansza.get_random_field();
-		if(!field.is_obstacle()){
-			var skrzynka = new BoardObject("crate", String.fromCharCode(9632), "yellow");
-			plansza.insert_object(field.position, skrzynka);
-			inserted = true;
-		}		
-	}while(!inserted);
-}
-console.log("done!".green);
-
-console.log("choosing crate goal...");
-do{
-	var goal_field = plansza.get_random_field();	
-}while(goal_field.is_obstacle());
-console.log("done!".green);
-
-plansza.set_goal(goal_field.position.x, goal_field.position.y);
-
-
-console.log("placing agent...");
-var agent = new BoardObject("agent", String.fromCharCode(9632), "green", 5, 5);
-plansza.insert_object(plansza.get_random_field().position, agent);
-console.log("done!".green);
+var plansza = Board.random(20);
+var agent = plansza.get_object_by_name("agent");
 
 //=========================================================
 /*

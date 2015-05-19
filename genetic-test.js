@@ -22,16 +22,8 @@ function mutation(a){
 	}
 }
 
-function fitness(a,b){
-	if (Math.abs(50 - a) < Math.abs(50 - b)){
-		return -1;
-	}
-	else if (Math.abs(50 - a) < Math.abs(50 - b)){
-		return 0;
-	}
-	else {
-		return 1;
-	} 
+function fitness(a){
+	return a;
 }
 
 console.log(population);
