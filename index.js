@@ -58,14 +58,16 @@ function perform_agent_action(action_path){
 	}
 }
 
+ConsoleDisplay.solve_and_show(plansza)
+
+/*
 var action_path = plansza.solve(plansza.size*3, Math.pow(plansza.size, 3.2));
+
 if(!action_path) console.log("UNSOLVABLE".red); else{
 	console.log("SOLVED!".green);	
 	var plansza = Board.fromState(initial_board_state);
 	var display = new ConsoleDisplay(plansza);
-	perform_agent_action(action_path);
+	plansza.perform_agent_action(action_path);
 } 
 
-
-perform_agent_action(action_path);
-
+*/

@@ -8,7 +8,7 @@ var Genetic = require("./lib/genetic-algorithm");
 
 var population = [];
 var size = 15;
-var population_size = 3;
+var population_size = 10;
 for (var i = 0;i < population_size;i++){
 	population.push(Board.random(size));
 }
@@ -102,9 +102,13 @@ function fitness(plansza){
 }
 
 var cross_amount = 3;
-var max_steps = 10;
-var solutionBoard = Genetic(population, crossBoards, mutateBoard, fitness, max_steps, cross_amount);
-new ConsoleDisplay(solutionBoard[0]);
+var max_steps = 2;
+var solutionArray = Genetic(population, crossBoards, mutateBoard, fitness, max_steps, cross_amount);
+var solutionBoard = solutionArray[0];
+
+ConsoleDisplay.solve_and_show(solutionBoard);
+//new ConsoleDisplay(solutionBoard);
+//var action_path = solutionBoard.solve()
 
 //new ConsoleDisplay(population[0]);
 //new ConsoleDisplay(mutateBoard(population[0]));
