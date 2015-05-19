@@ -7,8 +7,8 @@ var Materials = require("./lib/materials/materials");
 var Genetic = require("./lib/genetic-algorithm");
 
 var population = [];
-var size = 15;
-var population_size = 10;
+var size = 10;
+var population_size = 15;
 for (var i = 0;i < population_size;i++){
 	population.push(Board.random(size));
 }
@@ -93,20 +93,23 @@ function mutatePosition(x, y, size, probability){
 }
 
 function fitness(plansza){
-	var solving_path = plansza.solve(plansza.size*3, Math.pow(plansza.size, 3.2));
+	var solving_path = plansza.solve(plansza.size*5, Math.pow(plansza.size, 3.2));
 	if (!solving_path){
-		return 0
+		console.log("fitness: ", 0);
+		return 0;
 	} else {
-		return solving_path.length
+		console.log("fitness: ", solving_path.length);
+		return solving_path.length;
 	}
 }
 
 var cross_amount = 3;
 var max_steps = 2;
-var solutionArray = Genetic(population, crossBoards, mutateBoard, fitness, max_steps, cross_amount);
-var solutionBoard = solutionArray[0];
+var solutionBoard = Genetic(population, crossBoards, mutateBoard, fitness, max_steps, cross_amount);
+console.log("solution in generate-board: ",solutionBoard.fitness);
+ConsoleDisplay.solve_and_show(solutionBoard, size*5);
 
-ConsoleDisplay.solve_and_show(solutionBoard);
+console.log("solution in generate-board: ",solutionBoard.fitness);
 //new ConsoleDisplay(solutionBoard);
 //var action_path = solutionBoard.solve()
 
