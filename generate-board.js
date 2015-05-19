@@ -1,9 +1,10 @@
 var Immutable = require("immutable");
 
-var ConsoleDisplay = require("./lib/display-console")
+var ConsoleDisplay = require("./lib/display-console");
 var Board = require("./lib/board");
 var Field = require("./lib/field");
 var Materials = require("./lib/materials/materials");
+var Genetic = require("./lib/genetic-algorithm");
 
 var population = [];
 var size = 15;
@@ -19,11 +20,16 @@ function crossBoards(boardMum, boardDad){
 		size: mumState.size,
 		registred_objects: dadState.registred_objects,
 		goal_position: Math.random()>0.5 ? mumState.goal_position : dadState.goal_position,
+		/*
 		object_positions: Immutable.Map({
 			0 : Math.random()>0.5 ? mumState.object_positions.get(0) : dadState.object_positions.get(0),
 			1 : Math.random()>0.5 ? mumState.object_positions.get(1) : dadState.object_positions.get(1),
 		}),
+		*/
 	}
+	unitedState.object_positions = Immutable.Map();
+	unitedState.object_positions = unitedState.object_positions.set(0, Math.random()>0.5 ? mumState.object_positions.get(0) : dadState.object_positions.get(0));
+	unitedState.object_positions = unitedState.object_positions.set(1, Math.random()>0.5 ? mumState.object_positions.get(1) : dadState.object_positions.get(1));
 	var breakPoint = Math.floor(Math.random()*unitedState.size);
 	var mumOrDad = Math.random() > 0.5;
 	var united_fields = [];
@@ -55,14 +61,14 @@ function mutateBoard(board){
 	for(var x=0; x<board.size; x++){
 		for(var y=0; y<board.size; y++){
 			if(Math.random()<field_mutation_probability){
-				var current_field = finalState.fields.get(x).get(y);
+				var current_field = finalState.fields.get(parseInt(x)).get(parseInt(y));
 				var new_field = new Field("", x, y);
 				if(current_field.material!==null){
 					new_field.set_material(null);
 				}else{
 					new_field.set_material(Materials.Stone);
 				}
-				finalState.fields = finalState.fields.set(x, finalState.fields.get(x).set(y, new_field));
+				finalState.fields = finalState.fields.set(x, finalState.fields.get(parseInt(x)).set(parseInt(y), new_field));
 			}
 		}
 	}
@@ -72,7 +78,6 @@ function mutateBoard(board){
 
 function mutatePosition(x, y, size, probability){
 	if (Math.random() < probability){
-		console.log("mutatePosition", arguments)
 		var offsetParam = Math.floor(Math.pow(Math.random(),2)*size/1.5);
 		var breakPoint = Math.floor(Math.random()*offsetParam);
 		var signX = Math.sign(Math.random() - 0.5);
@@ -87,10 +92,19 @@ function mutatePosition(x, y, size, probability){
 	return { x : x, y : y,}
 }
 
-function fitness(board){
-	
+function fitness(plansza){
+	var solving_path = plansza.solve(plansza.size*3, Math.pow(plansza.size, 3.2));
+	if (!solving_path){
+		return 0
+	} else {
+		return solving_path.length
+	}
 }
 
-new ConsoleDisplay(population[0]);
+var cross_amount = 3;
+var max_steps = 10;
+var solutionBoard = Genetic(population, crossBoards, mutateBoard, fitness, max_steps, cross_amount);
+new ConsoleDisplay(solutionBoard[0]);
 
-new ConsoleDisplay(mutateBoard(population[0]));
+//new ConsoleDisplay(population[0]);
+//new ConsoleDisplay(mutateBoard(population[0]));
