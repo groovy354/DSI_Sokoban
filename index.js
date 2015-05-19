@@ -48,13 +48,15 @@ var initial_board_state = plansza.get_state();
 //var preview = new ConsoleDisplay(plansza);
 
 
-function perform_agent_action(action_path){
+function perform_agent_action(action_path, callback){
 	if(action_path.length>0){
 		var action = action_path.pop();
 		plansza.move_object(agent.id, action);
 		setTimeout(function(){
 			perform_agent_action(action_path);
 		}, 100);
+	} else if(callback) {
+		callback();
 	}
 }
 
