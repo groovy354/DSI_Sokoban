@@ -11,7 +11,7 @@ for (var i = 0;i < population_size;i++){
 	population.push(Board.random(size));
 }
 
-/*
+
 var cross_amount = 3;
 var max_steps = 10;
 var solutionBoard = Genetic(population, GeneticBoardsFunctions.crossBoards, GeneticBoardsFunctions.mutateBoard, GeneticBoardsFunctions.fitness, max_steps, cross_amount);
@@ -21,8 +21,8 @@ ConsoleDisplay.solve_and_show(
 	size*GeneticBoardsFunctions.max_depth_factor, 
 	Math.pow(size, GeneticBoardsFunctions.max_visited_factor)
 	)
-*/
 
+/*
 var fs = require('fs');
 
 function fitsort(a, b){
@@ -44,3 +44,4 @@ for (var i = 0; i < 10; i++){
 	population = population.sort(fitsort);
 	fs.writeFileSync('./random_rate.txt', population[0].fitness + "\n", {flag : 'a'});
 }
+*/
