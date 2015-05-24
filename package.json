@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/groovy354/DSI_Sokoban",
   "dependencies": {
+    "Set": "^0.4.1",
     "colors": "^1.1.0",
     "heap": "^0.2.6",
     "immutable": "^3.7.2",
-    "keypress": "^0.2.1"
+    "keypress": "^0.2.1",
+    "set": "^1.1.1"
   }
 }
