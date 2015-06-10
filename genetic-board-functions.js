@@ -75,7 +75,7 @@ function mutateBoard(board){
 				if(current_field.material!==null){
 					new_field.set_material(null);
 				}else{
-					new_field.set_material(Materials.Stone);
+					new_field.set_material(Materials.rock);
 				}
 				finalState.fields = finalState.fields.set(x, finalState.fields.get(parseInt(x)).set(parseInt(y), new_field));
 			}

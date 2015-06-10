@@ -1,0 +1,12 @@
+[
+ {"type": "swr", "age": "mid",  "competition": "yes", "class": "down"},
+ {"type": "hwr", "age": "old",  "competition": "no", "class": "down"},
+ {"type": "hwr", "age": "mid",  "competition": "no", "class": "up"},
+ {"type": "hwr", "age": "mid",  "competition": "yes", "class": "down"},
+ {"type": "swr", "age": "mid",  "competition": "no", "class": "up"},
+ {"type": "swr",  "age": "old",  "competition": "no", "class": "down"},
+ {"type": "swr", "age": "new",  "competition": "yes", "class": "up"},
+ {"type": "hwr", "age": "new",  "competition": "no", "class": "up"},
+ {"type": "swr", "age": "new",  "competition": "no", "class": "up"},
+ {"type": "swr", "age": "old",  "competition": "yes", "class": "down"}	
+]

@@ -1,0 +1,90 @@
+{
+   "temperature": {
+      "1": {
+         "height": {
+            "1": false,
+            "2": false,
+            "3": true,
+            "4": true
+         }
+      },
+      "2": {
+         "height": {
+            "1": false,
+            "2": {
+               "slippery": {
+                  "1": {
+                     "hardness": {
+                        "2": false,
+                        "3": "true",
+                        "4": true
+                     }
+                  },
+                  "2": true,
+                  "3": true
+               }
+            },
+            "3": {
+               "slippery": {
+                  "1": true,
+                  "2": {
+                     "hardness": {
+                        "1": false,
+                        "2": false,
+                        "4": true
+                     }
+                  },
+                  "3": {
+                     "hardness": {
+                        "1": false,
+                        "3": true,
+                        "4": true
+                     }
+                  }
+               }
+            },
+            "4": {
+               "slippery": {
+                  "1": true,
+                  "2": false,
+                  "3": false
+               }
+            }
+         }
+      },
+      "3": {
+         "height": {
+            "1": false,
+            "2": {
+               "slippery": {
+                  "1": false,
+                  "2": true,
+                  "3": true,
+                  "4": true
+               }
+            },
+            "3": {
+               "slippery": {
+                  "2": {
+                     "hardness": {
+                        "1": false,
+                        "4": true
+                     }
+                  },
+                  "3": {
+                     "hardness": {
+                        "1": "true",
+                        "2": "false",
+                        "3": true,
+                        "4": true
+                     }
+                  },
+                  "4": true
+               }
+            },
+            "4": false
+         }
+      },
+      "4": true
+   }
+}
