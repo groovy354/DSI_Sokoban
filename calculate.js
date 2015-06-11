@@ -1,7 +1,7 @@
 var load=require("./load2.js");
 var tab=load[0];
 var tab1=load[1];
-var defaultsizeInput=4,defaultsizeOutput=1,defaultSizeHiddenFirst=40,defaultSizeHiddenSecond=40,MAXSIZE=1000,LERANING=10,defaultTestNumber;
+var defaultsizeInput=4,defaultsizeOutput=1,defaultSizeHiddenFirst=40,defaultSizeHiddenSecond=40,MAXSIZE=1000,LERANING=10;
 function neuralNetwork (_sizeInput,_sizeOutput,_sizeHiddenFirst,_sizeHiddenSecond) {
 	this.sizeInput=_sizeInput;
 	this.sizeOutput= _sizeOutput;
@@ -66,16 +66,17 @@ function neuralNetwork (_sizeInput,_sizeOutput,_sizeHiddenFirst,_sizeHiddenSecon
 		}
 	}
 }
-function szi(){
+function szi(input){
 	//console.log(tab[1]);
-	for(var i =0 ;i<1000;i++){
-		var c=Math.floor(Math.random() * 10000) % 100;
+	for(var i =0 ;i<1500;i++){
+		var c=Math.floor(Math.random() * 10000) % 1000;
 		myNeuralNetwork.train(tab[c],tab1[c]);
 	}
-	for(var i =0 ;i<15;i++){
-		var c=Math.floor(Math.random() * 10000) % 1000;
-		console.log(runNN(tab[c],myNeuralNetwork),tab1[c]);
-	}
+	//for(var i =0 ;i<15;i++){
+	//	var c=Math.floor(Math.random() * 10000) % 1000;
+		//console.log(runNN(tab[c],myNeuralNetwork),tab1[c]);
+//	}
+	return runNN(input,myNeuralNetwork); 
 }
 function compare1_10(){
 	for(var i =0 ;i<10000000;i++){
@@ -202,7 +203,7 @@ function singelNeuron(inputSize){
 var myNeuralNetwork= new neuralNetwork (defaultsizeInput,defaultsizeOutput,defaultSizeHiddenFirst,defaultSizeHiddenSecond);
 myNeuralNetwork.randomWages();
 //naiveTest();
-szi();
+szi(tab[1]);
 //compare1_10();
 //console.log(runNN([1],myNeuralNetwork));
 /*var b={v:2};
