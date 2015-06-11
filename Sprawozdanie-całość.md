@@ -18,13 +18,13 @@ Nasz program korzysta z algorytmów sztucznej inteligencji, aby tworzyć plansze
 
 ##Użyte algorytmy
 
-Przechodzenie planszy - A* (wykonanie - **Jan Orlik**)
+Przechodzenie planszy - A STAR (wykonanie - **Jan Orlik**)
 
-Generowanie planszy - Algorytm genetyczny (jako funkcję oceny wykorzystuje algorytm powyżej). Wykonanie - **Pola Mikołajczak**
+Generowanie planszy - Algorytm genetyczny (jako funkcję oceny wykorzystuje algorytm powyżej - A STAR). Wykonanie - **Pola Mikołajczak**
 
 Algorytm znajdowania ścieżki musi wiedzieć, czy agent może wejść na dane pole, czy nie. Wykorzystywane jest do tego drzewo decyzyjne, nauczone na wygenerowanych automatycznie przykładach opisów pól (wysokość, twardość, temperatura, śliskość). Wykonanie - **Marta Smektała**
 
-Korzystamy także z sieci neuronowej do sprawdzania, jakiego typu jest dane pole (algorytm będzie wykorzystany przy wyświetlaniu planszy). Wykonanie - **Szymon Sobiepanek**
+Alternatywnie możemy korzystamy z sieci neuronowej do oceny, czy dane pole jest przeszkodą, czy nie. Wykonanie - **Szymon Sobiepanek**
 
 ##Napotkane, pokonane przeszkody
 * A* - W pierwotnej wersji kod bywał bardzo wolny (dochodziło nawet to wyczerpania dostępnej pamięci RAM). Było to spowodowane faktem, że dla każdego węzła w drzewie klonowany był obiekt planszy. Klonowanie samo w sobie było kosztowne obliczeniowo, a same klony zajmowały dużo pamięci.

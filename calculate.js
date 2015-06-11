@@ -34,7 +34,7 @@ function neuralNetwork (_sizeInput,_sizeOutput,_sizeHiddenFirst,_sizeHiddenSecon
 		}
 	}
 	this.train= function(input,output){
-		runNN(input,this);
+		this.runNN(input,this);
 		for(var i=0;i<this.sizeOutput;i++){
 			this.outputNeurons[i].error=derivateAF(this.outputNeurons[i].lastSumed)*(output[i]-this.outputNeurons[i].lastCalculated);
 		}
@@ -65,55 +65,31 @@ function neuralNetwork (_sizeInput,_sizeOutput,_sizeHiddenFirst,_sizeHiddenSecon
 
 		}
 	}
-}
-function szi(input){
-	//console.log(tab[1]);
-	for(var i =0 ;i<1500;i++){
-		var c=Math.floor(Math.random() * 10000) % 1000;
-		myNeuralNetwork.train(tab[c],tab1[c]);
-	}
-	//for(var i =0 ;i<15;i++){
-	//	var c=Math.floor(Math.random() * 10000) % 1000;
-		//console.log(runNN(tab[c],myNeuralNetwork),tab1[c]);
-//	}
-	return runNN(input,myNeuralNetwork); 
-}
-function compare1_10(){
-	for(var i =0 ;i<10000000;i++){
-		var k=[];
-		var suma=0;
-		for(var j=0;j<defaultsizeInput;j++){
-			var c=Math.floor(Math.random() * 100) % 10+1;
-			k.push(c);
-			suma+=c;
-		}	
-		if(suma>(defaultsizeInput*5))
-			myNeuralNetwork.train(k,[1]);
-		else
-			myNeuralNetwork.train(k,[0]);	
-		if(i%10000==0){
-					var d=runNN(k,myNeuralNetwork);
-				if(d>0.5)
-					var ka="tak";
-				else
-					var ka = "nie";
-				console.log(k,d,suma,ka);
-		}
 
+	this.trainAll = function(){
+		for(var i =0 ;i<1500;i++){
+			var c=Math.floor(Math.random() * 10000) % 1000;
+			this.train(tab[c],tab1[c]);
+		}
 	}
-	for(var i =0 ;i<10;i++){
-		var a=Math.floor(Math.random() * 100) % 10;
-		var b=Math.floor(Math.random() * 100) % 10;
-		var c=Math.floor(Math.random() * 100) % 10;
-		var d=runNN([a,b,c],myNeuralNetwork);
-		if(d>0.5)
-			var k="tak";
-		else
-			var k = "nie";
-		console.log(a," ",b," ",c," ",d,a+b+c,k);
+
+	this.predict = function(input){
+		
+		//for(var i =0 ;i<15;i++){
+		//	var c=Math.floor(Math.random() * 10000) % 1000;
+	//	}
+		return this.runNN(input); 
 	}
-	
+
+	this.runNN = function(input){
+		var tempimput=layerProcces(this.sizeInput,this.sizeHiddenFirst,input,this.firstNeurons);
+		tempimput=layerProcces(this.sizeHiddenFirst,this.sizeHiddenSecond,tempimput,this.secondNeurons);
+		return layerProcces(this.sizeHiddenSecond,this.sizeOutput,tempimput,this.outputNeurons);
+	}
+
 }
+
+
 function compare0_2(){
 	for(var i =0 ;i<1000;i++){
 		/*var a=Math.floor(Math.random() * 100) % 10;
@@ -145,32 +121,19 @@ function compare0_2(){
 		//myNeuralNetwork.train([0,0],[0]);
 
 		//var i=1;
-		//console.log(i," ",runNN([1],myNeuralNetwork));
 	}
 	/*for(var i=1;i<=10;i++){
-		console.log(i," ",11-i," ",runNN([i,11-i],myNeuralNetwork));
 	}*/
-	console.log(2," ",0," ",runNN([2,0],myNeuralNetwork));
-	console.log(0," ",1," ",runNN([0,1],myNeuralNetwork));
-	console.log(1," ",1," ",runNN([1,1],myNeuralNetwork));
-	console.log(0," ",0," ",runNN([0,0],myNeuralNetwork));
 }
 
 function testcase(_input,_output){
 	this.input=_input;
 	this.output=_output;
 }
-function runNN(input, currentNeuralNetwork){
-	var tempimput=layerProcces(currentNeuralNetwork.sizeInput,currentNeuralNetwork.sizeHiddenFirst,input,currentNeuralNetwork.firstNeurons);
-	//console.log(tempimput);
-	tempimput=layerProcces(currentNeuralNetwork.sizeHiddenFirst,currentNeuralNetwork.sizeHiddenSecond,tempimput,currentNeuralNetwork.secondNeurons);
-	return layerProcces(currentNeuralNetwork.sizeHiddenSecond,currentNeuralNetwork.sizeOutput,tempimput,currentNeuralNetwork.outputNeurons);
-}
+
 function layerProcces(inputSize,outputSize,input, neurons){
-	//console.log(inputSize,outputSize,input,neurons,"kurwa");
 	var ret=[];
 	for(var i=0;i<outputSize;i++){
-		//console.log(i," ",neurons[i].wage[0],"chuj");
 		ret.push(neurons[i].calculate(input));
 	}
 	return ret;
@@ -188,28 +151,27 @@ function singelNeuron(inputSize){
 	this.wage=new Array(inputSize);
 	this.calculate = function (input){
 		var ret=0;
-		//console.log(input.length,"input.length");
 		for (var i = 0; i < input.length; i++) {
-	//		console.log(ret,"ret1")
 			ret+=input[i]*this.wage[i];
-			//console.log(i,"i",input[i],this.wage[i],"ret2")
 		}
-	//	console.log(ret,"ret3")
 		this.lastCalculated=activationFunction(ret);
 		this.lastSumed=ret;
 		return activationFunction(ret);
 	}
 }
+/*
 var myNeuralNetwork= new neuralNetwork (defaultsizeInput,defaultsizeOutput,defaultSizeHiddenFirst,defaultSizeHiddenSecond);
 myNeuralNetwork.randomWages();
 //naiveTest();
 szi(tab[1]);
 //compare1_10();
-//console.log(runNN([1],myNeuralNetwork));
 /*var b={v:2};
 test(b);
-console.log(b.v);
 function test(a){
 	a.v=a.v*a.v;
 	return a;
-}*/
+}
+*/
+
+
+module.exports = neuralNetwork;
