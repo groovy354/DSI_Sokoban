@@ -1,7 +1,7 @@
-var load=require("./load.js");
+var load=require("./load2.js");
 var tab=load[0];
 var tab1=load[1];
-var defaultsizeInput=4,defaultsizeOutput=5,defaultSizeHiddenFirst=20,defaultSizeHiddenSecond=20,MAXSIZE=1000,LERANING=10;
+var defaultsizeInput=4,defaultsizeOutput=1,defaultSizeHiddenFirst=40,defaultSizeHiddenSecond=40,MAXSIZE=1000,LERANING=10,defaultTestNumber;
 function neuralNetwork (_sizeInput,_sizeOutput,_sizeHiddenFirst,_sizeHiddenSecond) {
 	this.sizeInput=_sizeInput;
 	this.sizeOutput= _sizeOutput;
@@ -68,7 +68,7 @@ function neuralNetwork (_sizeInput,_sizeOutput,_sizeHiddenFirst,_sizeHiddenSecon
 }
 function szi(){
 	//console.log(tab[1]);
-	for(var i =0 ;i<15000;i++){
+	for(var i =0 ;i<1000;i++){
 		var c=Math.floor(Math.random() * 10000) % 100;
 		myNeuralNetwork.train(tab[c],tab1[c]);
 	}
